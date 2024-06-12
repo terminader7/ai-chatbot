@@ -20,3 +20,15 @@ recognition.addEventListener("result", (e) => {
 
   console.log("Confidence: " + e.results[0][0].confidence);
 });
+
+function synthVoice(text) {
+  const synth = window.speechSynthesis;
+  const utternace = new SpeechSynthesisUtterance();
+
+  utternace.text = text;
+  synth.speak(utterance);
+}
+
+socket.on("bot reply", (replyText) => {
+  synthVoice(replyText);
+});
